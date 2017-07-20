@@ -18,6 +18,8 @@ use Frontend\App\Listener\UserMessageMapperEventListener;
 use Frontend\App\Mapper\UserMessageDbMapper;
 use Frontend\App\Service\UserMessageService;
 use Frontend\App\Service\UserMessageServiceInterface;
+use Workshop\Sample\Entity\SampleEntity;
+use Workshop\Sample\Mapper\SampleDbMapper;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 /**
@@ -30,13 +32,11 @@ class ConfigProvider
     {
         return [
             //'dependencies' => $this->getDependencies(),
-
+            'dot_mapper'=> $this->getMapper(),
             'templates' => $this->getTemplates(),
 
         ];
     }
-
-
 
 
     public function getTemplates(): array
@@ -46,6 +46,21 @@ class ConfigProvider
                 'app' => [__DIR__ . '/../templates/app']
 
             ],
+        ];
+    }
+
+    public function getMapper(): array
+    {
+        return [
+            'mapper_manager' => [
+                'factories' => [
+                    SampleDbMapper::class => DbMapperFactory::class
+                ],
+                'aliases' => [
+                    SampleEntity::class => SampleDbMapper::class
+                ]
+
+            ]
         ];
     }
 
