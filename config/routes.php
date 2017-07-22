@@ -6,7 +6,7 @@ use Dot\User\Controller\UserController as UserController;
 use Frontend\App\Controller\ContactController;
 use Frontend\App\Controller\PageController;
 use Frontend\User\Controller\UserController as FrontendUserController;
-use Workshop\Sample\SampleController;
+use Project\Image\Controller\ImageController;
 /**
  * Setup routes with a single request method:
  *
@@ -45,4 +45,4 @@ $app->route('/user[/{action}]', [FrontendUserController::class, UserController::
 
 $app->route('/contact[/{action}]', [ContactController::class], ['GET', 'POST'], 'contact');
 $app->route('/page[/{action}]', [PageController::class], ['GET', 'POST'], 'page');
-$app->route('/sample[/{action}]', [SampleController::class], ['GET', 'POST'], 'sample');
+$app->route('/image[/{action}]', [ImageController::class], ['GET', 'POST'], 'image');
